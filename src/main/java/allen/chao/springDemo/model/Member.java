@@ -2,10 +2,13 @@ package allen.chao.springDemo.model;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Member {
 	private final UUID id;
+	@NotBlank 
 	private final String name;
 	
 	public Member(@JsonProperty("id") UUID id, 

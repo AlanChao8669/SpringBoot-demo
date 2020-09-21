@@ -3,7 +3,10 @@ package allen.chao.springDemo.controller;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +31,7 @@ public class MemberController {
 	}
 	
 	@PostMapping
-	public void addMember(@RequestBody Member member) {
+	public void addMember(@Valid @NonNull @RequestBody Member member) {
 		memberService.insertMember(member);
 	}
 	
@@ -49,7 +52,7 @@ public class MemberController {
 	}
 	
 	@PutMapping(path = "{id}")
-	public void updateMember(@PathVariable("id") UUID id, @RequestBody Member member) {
+	public void updateMember(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Member member) {
 		memberService.updateMemberById(id, member);
 	}
 	
