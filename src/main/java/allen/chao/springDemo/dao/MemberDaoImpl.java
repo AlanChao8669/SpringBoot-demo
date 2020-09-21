@@ -37,15 +37,26 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public int deleteMemberById(UUID id) {
-		// TODO Auto-generated method stub
-		
-		return 0;
+		Optional<Member> Member = selectMemberById(id);
+		if(Member.equals(null)) {
+			return 0;
+		}
+		DB.remove(Member.get());
+		return 1;
 	}
 
 	@Override
-	public int updateMemberById(UUID id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMemberById(UUID id, Member memberUpdate) {
+		return selectMemberById(id)
+				.map(member ->{
+					int indexOfMemberToUpdate = DB.indexOf(member);
+					if(indexOfMemberToUpdate >= 0) {
+						DB.set(indexOfMemberToUpdate, new Member(id, memberUpdate.getName()));
+						return 1;
+					}
+					return 0;
+				})
+				.orElse(0);
 	}
 
 	

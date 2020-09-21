@@ -22,5 +22,5 @@ public interface MemberDao {
 	
 	int deleteMemberById(UUID id);
 	
-	int updateMemberById(UUID id);
+	int updateMemberById(UUID id, Member member);
 }

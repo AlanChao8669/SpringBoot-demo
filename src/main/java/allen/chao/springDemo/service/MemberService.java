@@ -32,4 +32,12 @@ public class MemberService {
 	public Optional<Member> getMemberById(UUID id) {
 		return memberDao.selectMemberById(id);
 	}
+	
+	public int deleteMemberById(UUID id) {
+		return memberDao.deleteMemberById(id);
+	}
+	
+	public int updateMemberById(UUID id, Member member) {
+		return memberDao.updateMemberById(id, member);
+	}
 }
